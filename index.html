@@ -56,7 +56,6 @@
 
   .sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:18px}
 
-  .meta{display:grid;grid-template-columns:2fr 2fr 1fr;gap:12px}
   label.f{display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   input[type=text],input[type=date],input:not([type]){font:inherit;font-family:var(--body);font-size:15px;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-width:0}
   input:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent)}
@@ -104,9 +103,7 @@
   .print-only{display:none}
 
   @media (max-width:640px){
-    .meta{grid-template-columns:1fr 1fr}
-    .meta .f:first-child{grid-column:1/-1}
-    .add{grid-template-columns:1fr 1fr}
+      .add{grid-template-columns:1fr 1fr}
     .add .f-desc{grid-column:1/-1;order:-1}
     .add-title{order:-2}
     .add button{grid-column:1/-1}
@@ -139,7 +136,7 @@
 <div class="wrap">
   <header class="top">
     <div>
-      <p class="eyebrow">Marcenaria sob medida</p>
+      <p class="eyebrow">Orçamentos de fornecedores</p>
       <h1>Orçamento de Marcenaria</h1>
     </div>
     <div class="actions">
@@ -149,12 +146,6 @@
   </header>
 
   <section class="sheet">
-    <div class="meta">
-      <label class="f">Cliente<input id="m-cliente" type="text" placeholder="Nome do cliente"></label>
-      <label class="f">Obra / endereço<input id="m-obra" type="text" placeholder="Apartamento, casa…"></label>
-      <label class="f">Data<input id="m-data" type="date"></label>
-    </div>
-
     <form class="add no-print" id="add-form" autocomplete="off">
       <p class="add-title">Adicionar item</p>
       <label class="f">Ambiente<input id="a-amb" type="text" list="amb-list" placeholder="Ex.: Cozinha" required></label>
@@ -177,7 +168,7 @@
       <div class="grand"><span>Total geral</span><strong id="grand">R$ 0,00</strong></div>
     </div>
 
-    <label class="f notes" id="notes-wrap">Observações<textarea id="m-obs" placeholder="Prazo de entrega, forma de pagamento, validade da proposta…"></textarea></label>
+    <label class="f notes" id="notes-wrap">Observações<textarea id="m-obs" placeholder="Condições negociadas, prazo, forma de pagamento…"></textarea></label>
   </section>
 
   <p class="hint">Os dados ficam salvos neste navegador. Clique no nome de um ambiente, descrição ou valor para editar. “Exportar PDF” abre a impressão — escolha “Salvar como PDF”.</p>
@@ -192,7 +183,7 @@
   let uid = 1;
 
   const sample = () => ({
-    meta:{cliente:'Exemplo — Ana Souza',obra:'Apto 42, Rua das Acácias',data:new Date().toISOString().slice(0,10),obs:'Exemplo: prazo de 35 dias úteis após aprovação. 50% na assinatura, 50% na entrega.'},
+    meta:{obs:''},
     items:[
       {amb:'Cozinha',desc:'Armários inferiores em MDF branco TX 18 mm com corrediças telescópicas',val:6850},
       {amb:'Cozinha',desc:'Armários aéreos com portas basculantes e pistão a gás',val:4200},
@@ -261,13 +252,13 @@
   }
 
   // meta fields
-  const metaMap = {cliente:'m-cliente',obra:'m-obra',data:'m-data',obs:'m-obs'};
+  const metaMap = {obs:'m-obs'};
+  if(!state.meta) state.meta = {};
   Object.entries(metaMap).forEach(([k,id]) => {
     const el = $(id);
     el.value = state.meta?.[k] || '';
     el.addEventListener('input', () => { state.meta[k] = el.value; save(); syncNotes(); });
   });
-  if(!state.meta) state.meta = {};
   function syncNotes(){ $('notes-wrap').classList.toggle('blank', !$('m-obs').value.trim()); }
   syncNotes();
 
@@ -309,15 +300,14 @@
 
   $('btn-clear').addEventListener('click', () => {
     if(!confirm('Começar um orçamento novo? Os itens atuais serão apagados.')) return;
-    state = {meta:{data:new Date().toISOString().slice(0,10)},items:[]};
+    state = {meta:{},items:[]};
     Object.entries(metaMap).forEach(([k,id]) => $(id).value = state.meta[k] || '');
     syncNotes(); render();
   });
 
   $('btn-pdf').addEventListener('click', () => {
-    const c = norm($('m-cliente').value);
     const old = document.title;
-    document.title = 'Orçamento' + (c ? ' - ' + c : '');
+    document.title = 'Orçamento marcenaria ' + new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
     const ta = $('m-obs'); ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px';
     try{ window.print(); } catch(e){ alert('A impressão foi bloqueada aqui. Abra o arquivo HTML direto no navegador e use Ctrl/Cmd+P → Salvar como PDF.'); }
     setTimeout(() => { document.title = old; ta.style.height = ''; }, 500);

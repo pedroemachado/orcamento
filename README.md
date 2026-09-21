@@ -1,6 +1,6 @@
 # Orçamento de Marcenaria
 
-Página HTML única para montar orçamentos de marcenaria.
+Página para organizar orçamentos de fornecedores de marcenaria: editar cada linha, negociar e exportar em PDF.
 
 - Adicione itens com **Ambiente**, **Descrição** e **Valor**
 - Itens do mesmo ambiente são agrupados automaticamente, com subtotal por ambiente e total geral
