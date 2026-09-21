@@ -39,7 +39,7 @@
 
   *{box-sizing:border-box}
   body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
-  .wrap{max-width:920px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
+  .wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
 
   header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px}
   .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 4px}
@@ -57,27 +57,30 @@
   .sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:18px}
 
   label.f{display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-  input[type=text],input[type=date],input:not([type]){font:inherit;font-family:var(--body);font-size:15px;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-width:0}
-  select{font:inherit;font-family:var(--body);font-size:15px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 30px 8px 10px;width:100%;min-width:0;cursor:pointer;appearance:none;-webkit-appearance:none;
+  input[type=text],textarea{font:inherit;font-family:var(--body);font-size:15px;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-width:0}
+  select{font:inherit;font-family:var(--body);font-size:15px;color:var(--ink);background-color:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 28px 8px 10px;width:100%;min-width:0;cursor:pointer;appearance:none;-webkit-appearance:none;
     background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
-    background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%;background-size:5px 5px;background-repeat:no-repeat}
-  .amb-field{display:flex;flex-direction:column;gap:6px}
-  .amb-field > label.f{gap:0}
-  select:focus,input:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent)}
+    background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+  select:focus,input:focus,textarea:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent)}
+  input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;margin:0}
 
   .add{display:grid;grid-template-columns:1.1fr 2fr .9fr auto;gap:10px;align-items:end;padding:14px;background:var(--band);border-radius:8px}
   .add .money{font-family:var(--mono);text-align:right}
   .add-title{grid-column:1/-1;font-family:var(--display);font-weight:500;font-size:15px;margin:0}
+  .amb-field{display:flex;flex-direction:column;gap:6px}
+  .amb-field > label.f{gap:0}
 
   .table-wrap{overflow-x:auto}
   table{width:100%;table-layout:fixed;border-collapse:collapse;font-variant-numeric:tabular-nums}
   thead th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:0 8px 8px;border-bottom:2px solid var(--ink)}
   thead th.num{text-align:right}
-  col.c-desc{width:auto}
-  col.c-val{width:170px}
-  col.c-act{width:40px}
+  th.chk{width:56px}
+  th.amb{width:170px}
+  th.num{width:140px}
+  th.act{width:40px}
+  td.chk{text-align:center}
 
-  tr.group td{padding:18px 8px 8px;border-bottom:1px solid var(--line)}
+  tr.group td{padding:20px 8px 8px;border-bottom:1px solid var(--line)}
   .gname{display:flex;align-items:center;gap:10px}
   .gname input{font-family:var(--display);font-weight:700;font-size:18px;border-color:transparent;background:transparent;padding:4px 6px;margin-left:-6px;max-width:320px}
   .gname input:hover{border-color:var(--line)}
@@ -85,36 +88,43 @@
   .gadd{font-size:13px;padding:4px 10px;color:var(--accent);border-color:transparent;background:transparent;white-space:nowrap}
   .gadd:hover{border-color:var(--accent)}
 
-  tr.item td{padding:2px 8px;border-bottom:1px dashed var(--line);vertical-align:middle}
-  tr.item input{border-color:transparent;background:transparent;padding:7px 6px;margin-left:-6px}
-  tr.item input:hover{border-color:var(--line)}
-  tr.item input.money{font-family:var(--mono);text-align:right;margin-left:0}
-  tr.item .del{width:30px;height:30px;padding:0;display:grid;place-items:center;font-size:18px;line-height:1}
+  tr.item td{padding:3px 8px;border-bottom:1px dashed var(--line);vertical-align:top}
+  tr.item td.chk{padding-top:12px}
+  tr.item input,tr.item textarea,tr.item select{border-color:transparent;background-color:transparent}
+  tr.item input:hover,tr.item textarea:hover,tr.item select:hover{border-color:var(--line)}
+  tr.item textarea{resize:none;overflow:hidden;line-height:1.4;padding:7px 6px;margin-left:-6px;display:block;field-sizing:content;min-height:0}
+  tr.item select{font-size:13px;color:var(--muted);padding:7px 24px 7px 8px}
+  tr.item input.money{font-family:var(--mono);text-align:right;padding:7px 6px}
+  tr.item .del{width:30px;height:30px;padding:0;display:grid;place-items:center;font-size:18px;line-height:1;margin-top:4px}
+  tr.item.off textarea,tr.item.off select{color:var(--muted)}
+  tr.item.off input.money{color:var(--muted);text-decoration:line-through}
+  tr.item.off td{background:color-mix(in srgb, var(--band) 45%, transparent)}
 
   tr.sub td{padding:8px 8px 4px;font-family:var(--mono);font-size:13px}
   tr.sub .lbl{color:var(--muted);text-align:right}
-  tr.sub .v{text-align:right;font-weight:600;background:var(--accent-soft);border-radius:4px;padding-inline:8px}
+  tr.sub .opt{display:block;font-size:11.5px;color:var(--muted);opacity:.85}
+  tr.sub .v{text-align:right;font-weight:600;background:var(--accent-soft);border-radius:4px;padding-inline:8px;vertical-align:top}
 
-  .total{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;border-top:2px solid var(--ink);padding-top:14px}
-  .breakdown{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  .total{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;border-top:2px solid var(--ink);padding-top:14px}
+  .breakdown{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:12.5px;color:var(--muted);max-width:620px}
   .breakdown b{color:var(--ink);font-weight:500}
-  .grand{display:flex;align-items:baseline;gap:12px}
+  .grand{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+  .grand-row{display:flex;align-items:baseline;gap:12px}
   .grand span{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
   .grand strong{font-family:var(--display);font-size:clamp(26px,5vw,34px);font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+  .offsum{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
 
-  .notes textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-height:64px;resize:vertical;text-transform:none;letter-spacing:0;font-family:var(--body)}
+  .notes textarea{font-size:14px;min-height:64px;resize:vertical;field-sizing:content}
   .empty{padding:28px 8px;text-align:center;color:var(--muted)}
-  .hint{font-size:12.5px;color:var(--muted);margin:0}
+  .hint{font-size:12.5px;color:var(--muted);margin:0;max-width:75ch}
   .print-only{display:none}
 
   @media (max-width:640px){
     .add{grid-template-columns:1fr}
-    col.c-val{width:112px}
-    col.c-act{width:34px}
+    table{min-width:620px}
     .gcount{display:none}
-    tr.sub .lbl{font-size:12px}
-    .gname input{font-size:16px}
     .sheet{padding:14px}
+    .grand{align-items:flex-start}
   }
 
   @media print{
@@ -122,17 +132,19 @@
     :root{--ground:#fff;--paper:#fff;--ink:#111;--muted:#555;--line:#ccc;--band:#fff;--accent:#6B4220;--accent-soft:#F1E6DA}
     body{background:#fff;font-size:12px}
     .wrap{padding:0;max-width:none;gap:14px}
-    .no-print,.actions,.add,.del,.gadd,.hint,col.c-act,td.act,th.act{display:none!important}
+    .no-print,.actions,.add,.gadd,.gcount,.hint,.chk,.amb,.act,tr.off,tr.alloff,.offsum,tr.sub .opt,tr.item textarea,.notes textarea{display:none!important}
     .print-only{display:block}
+    table{table-layout:auto;min-width:0}
     .sheet{border:none;padding:0;border-radius:0}
-    input,textarea{border:none!important;box-shadow:none!important;padding:0!important;margin:0!important;background:transparent!important;resize:none}
-    tr.item td{padding:5px 8px}
+    input{border:none!important;box-shadow:none!important;padding:0!important;margin:0!important;background:transparent!important}
+    tr.item td{padding:5px 8px;vertical-align:top}
+    tr.item td.num{width:120px}
+    .ptxt{white-space:pre-wrap}
     tr.group{break-after:avoid}
     tr.item,tr.sub{break-inside:avoid}
     .gname input{font-size:15px}
     .grand strong{font-size:24px}
-    .notes textarea{min-height:0;height:auto}
-    .notes.blank{display:none}
+    .notes.blank{display:none!important}
   }
 </style>
 </head>
@@ -158,56 +170,98 @@
         <select id="a-sel" aria-label="Escolher ambiente"></select>
         <input id="a-amb" type="text" placeholder="Nome do novo ambiente" aria-label="Novo ambiente" hidden>
       </div>
-      <label class="f f-desc">Descrição do item<input id="a-desc" type="text" placeholder="Ex.: Armário aéreo em MDF branco 18 mm" required></label>
-      <label class="f">Valor (R$)<input id="a-val" type="text" inputmode="decimal" class="money" placeholder="0,00" required></label>
+      <label class="f">Descrição do item<input id="a-desc" type="text" placeholder="Ex.: Armário aéreo em MDF branco 18 mm" required></label>
+      <label class="f">Valor (R$)<input id="a-val" type="text" inputmode="decimal" class="money" placeholder="0,00"></label>
       <button type="submit" class="primary">Adicionar</button>
     </form>
 
     <div class="table-wrap">
       <table>
-        <colgroup><col class="c-desc"><col class="c-val"><col class="c-act"></colgroup>
-        <thead><tr><th>Ambiente / descrição dos itens</th><th class="num">Valor</th><th class="act"></th></tr></thead>
+        <thead><tr>
+          <th class="chk" title="Incluir no total">Incl.</th>
+          <th>Descrição dos itens</th>
+          <th class="amb">Ambiente</th>
+          <th class="num">Valor</th>
+          <th class="act"></th>
+        </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
 
     <div class="total">
       <div class="breakdown" id="breakdown"></div>
-      <div class="grand"><span>Total geral</span><strong id="grand">R$ 0,00</strong></div>
+      <div class="grand">
+        <div class="grand-row"><span>Total geral</span><strong id="grand">R$ 0,00</strong></div>
+        <div class="offsum" id="offsum"></div>
+      </div>
     </div>
 
-    <label class="f notes" id="notes-wrap">Observações<textarea id="m-obs" placeholder="Condições negociadas, prazo, forma de pagamento…"></textarea></label>
+    <label class="f notes" id="notes-wrap">Observações<textarea id="m-obs" placeholder="Condições negociadas, prazo, forma de pagamento…"></textarea><div class="print-only ptxt" id="obs-print"></div></label>
   </section>
 
-  <p class="hint">Os dados ficam salvos neste navegador. Clique no nome de um ambiente, descrição ou valor para editar. “Exportar PDF” abre a impressão — escolha “Salvar como PDF”.</p>
+  <p class="hint">Tudo é editável: clique na descrição, no valor ou no nome de um ambiente. Troque o ambiente de uma linha pelo menu da coluna “Ambiente”. Desmarque “Incl.” para tirar um item do total sem apagá-lo — itens desmarcados não saem no PDF. Os dados ficam salvos neste navegador.</p>
 </div>
 
 <script>
 (function(){
-  const KEY = 'orcamento-marcenaria-v1';
+  const KEY = 'orcamento-marcenaria-v2';
   const brl = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
   const num = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
   const $ = id => document.getElementById(id);
   let uid = 1;
 
-  const sample = () => ({
-    meta:{obs:''},
+  // Proposta do fornecedor (PDF de 19/09/2026). LEDs e itens de 2º plano entram fora do total, como na proposta.
+  const fromPdf = () => ({
+    meta:{obs:'Pagamento: entrada de R$ 48.000,00 e o restante em 10x sem juros no cartão, ou o total em até 18x com juros.\nPrazo: 55 dias úteis para a entrega total + 15 dias úteis para as portas de espelho (terceirizadas). Início de confecção imediato.\nProposta sem LEDs, mas com tudo preparado para recebê-los. Orçamento válido por 3 dias úteis.'},
     items:[
-      {amb:'Cozinha',desc:'Armários inferiores em MDF branco TX 18 mm com corrediças telescópicas',val:6850},
-      {amb:'Cozinha',desc:'Armários aéreos com portas basculantes e pistão a gás',val:4200},
-      {amb:'Cozinha',desc:'Torre quente para forno e micro-ondas',val:2900},
-      {amb:'Dormitório casal',desc:'Guarda-roupa 3 portas de correr em MDF freijó',val:9400},
-      {amb:'Dormitório casal',desc:'Cabeceira ripada com nichos e iluminação LED',val:3150},
-      {amb:'Banheiro social',desc:'Gabinete suspenso com 2 gavetas, MDF naval',val:1980}
-    ]
+      ['Cozinha','Cozinha completa conforme projeto, parte interna branco TX e externa na cor do projeto',26690],
+      ['Cozinha','1 kit retrátil para a torre de elétricos',1980],
+      ['Cozinha','6 portas de vidro canelado com moldura de perfil preto, conforme projeto',4665],
+      ['Cozinha','12 corrediças invisíveis com amortecimento, modelo industrial',1980],
+      ['Cozinha','LEDs na cozinha (instalados)',2815,1],
+      ['Área gourmet','Móvel inferior e superior',2880],
+      ['Área gourmet','LEDs na área gourmet (instalados)',580,1],
+      ['Hall de entrada','Móvel do hall de entrada, nicho com curva (aparador)',1650],
+      ['Sala','Porta de entrada da sala / entrada da brinquedoteca + painel. Kit tradicional de passagem de cortesia; porta de passagem feita nova, sem aproveitar a existente. Opção de portas 3 folhas cortina retrátil: kit à parte',12940],
+      ['Escritório','Divisor com 2 portas de passagem com kit tradicional, painel dos 2 lados',9855],
+      ['Escritório','2º plano — mesa sem as curvas, com gaveteiro volante (rodinha invisível)',5800,1],
+      ['Escritório','2º plano — LEDs da mesa',900,1],
+      ['Escritório','2º plano — armários e nichos sem as curvas',5900,1],
+      ['Escritório','2º plano — LEDs dos armários',900,1],
+      ['Lavanderia','Feita em branco TX conforme projeto, com a adaptação alinhada em reunião',8630],
+      ['Lavabo','Parte inferior da pia conforme projeto, porta ripada vazada, parte interna na cor',2200],
+      ['Lavabo','2º plano — painel do teto e lateral',2580,1],
+      ['Quarto casal','Cabeceira de cama com 2 mesas laterais',5850],
+      ['Quarto casal','Armários em L com painel, armário da entrada do quarto com portas e nicho, moldura de painel com porta de passagem para o closet',23870],
+      ['Quarto casal','2 portas de espelho prata, borda 0, puxador slim (R$ 1.490,00 cada)',2980],
+      ['Quarto casal','LEDs da cabeceira (instalados)',980,1],
+      ['Quarto casal','LEDs dos nichos do armário (instalados)',980,1],
+      ['Banho casal','Armário inferior e superior com adaptação até o teto, com frisos e preparação para LEDs',4985],
+      ['Banho casal','4 portas de espelho com perfil de alumínio e borda 0',2680],
+      ['Banho casal','LEDs do banho casal (instalados)',1650,1],
+      ['Closet','Closet conforme projeto em branco TX (sem a gaveta estofada com separador para relógio). Opção com cor externa: R$ 15.635,00',11830],
+      ['Hall do elevador','Tampo do banco de entrada do elevador e tampo da estrutura metálica do móvel da cervejeira, todo em MDF — cortesia (metalon à parte)',0],
+      ['Quarto filhas','Armário conforme projeto com adaptações: porta sem moldura, porta de espelho inteiriça e parte curva feita só em MDF',9890],
+      ['Quarto filhas','Kit especial com amortecimento e segurança',1480],
+      ['Quarto filhas','Porta de espelho prata com puxador prata 7000 para o armário',1940],
+      ['Quarto filhas','Cabeceira em MDF (interno em qualquer cor ou cru, bordas na cor), preparada para tapeçaria dentro do requadro e com frisos de LED. Cômoda e estofado não inclusos',3890],
+      ['Quarto filhas','LEDs da cabeceira (instalados)',1680,1],
+      ['Banheiro filhas','Parte inferior e superior conforme projeto; porta de espelho retangular com borda infinita. Acessório do papel higiênico por conta do cliente',3860],
+      ['Banheiro filhas','Palha indiana',410],
+      ['Banheiro filhas','Porta de espelho com perfil prata e espelho prata',980],
+      ['Banheiro filhas','LEDs do banheiro (instalados)',980,1],
+      ['Brinquedoteca','2º plano — brinquedoteca sem a curva',6360,1],
+      ['Brinquedoteca','2º plano — palha indiana',410,1]
+    ].map(([amb,desc,val,off])=>({amb,desc,val,off:!!off}))
   });
 
   let state;
   try{ state = JSON.parse(localStorage.getItem(KEY)); }catch(e){ state = null; }
-  if(!state || !Array.isArray(state.items)) state = sample();
-  state.items.forEach(it => it.id = uid++);
+  if(!state || !Array.isArray(state.items)) state = fromPdf();
+  if(!state.meta) state.meta = {};
+  state.items.forEach(it => { it.id = uid++; it.off = !!it.off; });
 
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify({meta:state.meta,items:state.items.map(({amb,desc,val})=>({amb,desc,val}))})); }catch(e){} }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify({meta:state.meta,items:state.items.map(({amb,desc,val,off})=>({amb,desc,val,off}))})); }catch(e){} }
 
   function parseMoney(s){
     s = String(s).replace(/[R$\s]/g,'');
@@ -216,8 +270,21 @@
     const n = parseFloat(s);
     return isFinite(n) ? Math.round(n*100)/100 : 0;
   }
-  const norm = s => s.trim().replace(/\s+/g,' ');
-  const key = s => norm(s).toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const norm = s => String(s).trim().replace(/\s+/g,' ');
+  const key = s => norm(s).toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[̀-ͯ]/g,'');
+  function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  function groups(){
+    const map = new Map();
+    state.items.forEach(it => {
+      const k = key(it.amb);
+      if(!map.has(k)) map.set(k,{name:norm(it.amb),items:[],sum:0,offSum:0,offCount:0});
+      const g = map.get(k); g.items.push(it);
+      if(it.off){ g.offSum += it.val; g.offCount++; } else g.sum += it.val;
+    });
+    return [...map.values()];
+  }
+
   // "cozinha" x "cosinha": distância de edição entre nomes sem acento
   function dist(a,b){
     const m=a.length,n=b.length; let prev=Array.from({length:n+1},(_,j)=>j);
@@ -228,73 +295,81 @@
     const k=key(name), soft=x=>x.replace(/ss|z|ç/g,'s');
     let best=null, bd=Infinity;
     groups().forEach(g=>{ const d=Math.min(dist(k,key(g.name)),dist(soft(k),soft(key(g.name)))); if(d<bd){bd=d;best=g.name;} });
-    const lim = k.length>=5 ? 2 : 1;
-    return bd<=lim ? best : null;
+    return bd <= (k.length>=5 ? 2 : 1) ? best : null;
   }
+  // Nome digitado para ambiente novo → ambiente existente (igual ou parecido) ou o próprio nome
+  function resolveAmb(name){
+    name = norm(name);
+    const same = groups().find(g => key(g.name) === key(name));
+    if(same) return same.name;
+    const near = similar(name);
+    if(near && confirm(`Já existe o ambiente "${near}".\n\nOK = usar "${near}"\nCancelar = criar "${name}" como novo ambiente`)) return near;
+    return name;
+  }
+
   const NEW='__novo__';
   let currentAmb = null;
+  function ambOptions(selected){
+    return groups().map(g=>`<option value="${esc(g.name)}"${key(g.name)===key(selected)?' selected':''}>${esc(g.name)}</option>`).join('') + `<option value="${NEW}">+ Novo ambiente…</option>`;
+  }
   function renderSel(){
     const sel=$('a-sel'), names=groups().map(g=>g.name);
-    if(currentAmb!==NEW && !names.some(n=>key(n)===key(currentAmb||''))) currentAmb = names.length ? names[names.length-1] : NEW;
-    if(currentAmb!==NEW) currentAmb = names.find(n=>key(n)===key(currentAmb));
-    sel.innerHTML = names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('') + `<option value="${NEW}">+ Novo ambiente…</option>`;
+    if(currentAmb!==NEW){
+      const hit = names.find(n=>key(n)===key(currentAmb||''));
+      currentAmb = hit || (names.length ? names[names.length-1] : NEW);
+    }
+    sel.innerHTML = ambOptions(currentAmb===NEW ? '' : currentAmb);
     sel.value = currentAmb;
     sel.hidden = !names.length;
     $('a-amb').hidden = currentAmb!==NEW;
   }
 
-  function groups(){
-    const map = new Map();
-    state.items.forEach(it => {
-      const k = key(it.amb);
-      if(!map.has(k)) map.set(k,{name:norm(it.amb),items:[],sum:0});
-      const g = map.get(k); g.items.push(it); g.sum += it.val;
-    });
-    return [...map.values()];
-  }
-
-  function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function fit(t){ if(CSS.supports && CSS.supports('field-sizing','content')) return; t.style.height='auto'; t.style.height=t.scrollHeight+'px'; }
 
   function render(){
     const gs = groups();
     const tb = $('tbody');
     if(!gs.length){
-      tb.innerHTML = '<tr><td colspan="3" class="empty">Nenhum item ainda. Adicione o primeiro item acima.</td></tr>';
+      tb.innerHTML = '<tr><td colspan="5" class="empty">Nenhum item ainda. Adicione o primeiro item acima.</td></tr>';
     } else {
-      tb.innerHTML = gs.map((g,gi) => `
-        <tr class="group"><td colspan="3"><div class="gname">
+      tb.innerHTML = gs.map((g,gi) => {
+        const allOff = g.offCount === g.items.length ? ' alloff' : '';
+        const n = g.items.length;
+        return `
+        <tr class="group${allOff}"><td colspan="5"><div class="gname">
           <input type="text" id="g-${gi}" value="${esc(g.name)}" data-group="${esc(g.name)}" aria-label="Nome do ambiente">
-          <span class="gcount">${g.items.length} ${g.items.length===1?'item':'itens'}</span>
+          <span class="gcount">${n} ${n===1?'item':'itens'}${g.offCount?` · ${g.offCount} fora do total`:''}</span>
           <button type="button" class="gadd" data-addto="${esc(g.name)}">+ item</button>
         </div></td></tr>
         ${g.items.map(it => `
-          <tr class="item">
-            <td><input type="text" id="d-${it.id}" value="${esc(it.desc)}" data-id="${it.id}" data-field="desc" aria-label="Descrição"></td>
-            <td><input type="text" id="v-${it.id}" inputmode="decimal" class="money" value="${num.format(it.val)}" data-id="${it.id}" data-field="val" aria-label="Valor"></td>
+          <tr class="item${it.off?' off':''}">
+            <td class="chk"><input type="checkbox" id="c-${it.id}" data-id="${it.id}" data-field="inc" ${it.off?'':'checked'} aria-label="Incluir no total"></td>
+            <td><textarea id="d-${it.id}" rows="1" data-id="${it.id}" data-field="desc" aria-label="Descrição">${esc(it.desc)}</textarea><div class="print-only ptxt">${esc(it.desc)}</div></td>
+            <td class="amb"><select id="s-${it.id}" data-id="${it.id}" data-field="amb" aria-label="Ambiente">${ambOptions(it.amb)}</select></td>
+            <td class="num"><input type="text" id="v-${it.id}" inputmode="decimal" class="money" value="${num.format(it.val)}" data-id="${it.id}" data-field="val" aria-label="Valor"></td>
             <td class="act"><button type="button" class="ghost del" data-del="${it.id}" aria-label="Remover item">×</button></td>
           </tr>`).join('')}
-        <tr class="sub"><td class="lbl">Subtotal ${esc(g.name)}</td><td class="v">${brl.format(g.sum)}</td><td class="act"></td></tr>
-      `).join('');
+        <tr class="sub${allOff}"><td colspan="3" class="lbl">Subtotal ${esc(g.name)}${g.offSum?`<span class="opt">+ ${brl.format(g.offSum)} fora do total</span>`:''}</td><td class="v">${brl.format(g.sum)}</td><td class="act"></td></tr>`;
+      }).join('');
+      tb.querySelectorAll('textarea').forEach(fit);
     }
     const total = gs.reduce((a,g)=>a+g.sum,0);
+    const offTotal = gs.reduce((a,g)=>a+g.offSum,0);
     $('grand').textContent = brl.format(total);
-    $('breakdown').innerHTML = gs.map(g=>`<span>${esc(g.name)} <b>${brl.format(g.sum)}</b></span>`).join('');
+    $('offsum').textContent = offTotal ? `Itens desmarcados, fora do total: ${brl.format(offTotal)}` : '';
+    $('breakdown').innerHTML = gs.filter(g=>g.offCount<g.items.length).map(g=>`<span>${esc(g.name)} <b>${brl.format(g.sum)}</b></span>`).join('');
     renderSel();
     save();
   }
 
-  // meta fields
-  const metaMap = {obs:'m-obs'};
-  if(!state.meta) state.meta = {};
-  Object.entries(metaMap).forEach(([k,id]) => {
-    const el = $(id);
-    el.value = state.meta?.[k] || '';
-    el.addEventListener('input', () => { state.meta[k] = el.value; save(); syncNotes(); });
-  });
-  function syncNotes(){ $('notes-wrap').classList.toggle('blank', !$('m-obs').value.trim()); }
+  // observações
+  const obs = $('m-obs');
+  obs.value = state.meta.obs || '';
+  function syncNotes(){ $('notes-wrap').classList.toggle('blank', !obs.value.trim()); $('obs-print').textContent = obs.value; fit(obs); }
+  obs.addEventListener('input', () => { state.meta.obs = obs.value; save(); syncNotes(); });
   syncNotes();
 
-  // add
+  // adicionar
   $('add-form').addEventListener('submit', e => {
     e.preventDefault();
     const isNew = $('a-sel').value===NEW || $('a-sel').hidden;
@@ -302,19 +377,11 @@
     const desc = norm($('a-desc').value);
     if(!amb){ $('a-amb').focus(); return; }
     if(!desc){ $('a-desc').focus(); return; }
-    if(isNew){
-      const same = groups().find(g => key(g.name) === key(amb));
-      if(same) amb = same.name;
-      else {
-        const near = similar(amb);
-        if(near && confirm(`Já existe o ambiente "${near}".\n\nOK = lançar em "${near}"\nCancelar = criar "${amb}" como novo ambiente`)) amb = near;
-      }
-    }
-    state.items.push({id:uid++, amb, desc, val:parseMoney($('a-val').value)});
+    if(isNew) amb = resolveAmb(amb);
+    state.items.push({id:uid++, amb, desc, val:parseMoney($('a-val').value), off:false});
     currentAmb = amb;
-    $('a-amb').value = '';
+    $('a-amb').value = ''; $('a-desc').value = ''; $('a-val').value = '';
     render();
-    $('a-desc').value = ''; $('a-val').value = '';
     $('a-desc').focus();
   });
   $('a-sel').addEventListener('change', e => {
@@ -324,8 +391,17 @@
   });
   $('a-val').addEventListener('blur', e => { if(e.target.value.trim()) e.target.value = num.format(parseMoney(e.target.value)); });
 
-  // inline edits
-  $('tbody').addEventListener('change', e => {
+  // edição na tabela
+  const tb = $('tbody');
+  tb.addEventListener('input', e => {
+    const t = e.target;
+    if(t.dataset.field === 'desc'){
+      const it = state.items.find(i => i.id == t.dataset.id);
+      if(it){ it.desc = t.value; t.nextElementSibling.textContent = t.value; save(); }
+      fit(t);
+    }
+  });
+  tb.addEventListener('change', e => {
     const t = e.target;
     if(t.dataset.group !== undefined){
       const nv = norm(t.value);
@@ -335,12 +411,24 @@
     }
     const it = state.items.find(i => i.id == t.dataset.id);
     if(!it) return;
-    if(t.dataset.field === 'val') it.val = parseMoney(t.value);
-    else it.desc = t.value;
+    switch(t.dataset.field){
+      case 'val': it.val = parseMoney(t.value); break;
+      case 'desc': it.desc = t.value.trim(); break;
+      case 'inc': it.off = !t.checked; break;
+      case 'amb':
+        if(t.value === NEW){
+          const name = prompt('Nome do novo ambiente:');
+          if(name && norm(name)) it.amb = resolveAmb(name);
+        } else it.amb = t.value;
+        break;
+    }
     render();
   });
-  $('tbody').addEventListener('keydown', e => { if(e.key === 'Enter' && e.target.tagName === 'INPUT') e.target.blur(); });
-  $('tbody').addEventListener('click', e => {
+  tb.addEventListener('keydown', e => {
+    const t = e.target;
+    if(e.key === 'Enter' && !e.shiftKey && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA') && t.type !== 'checkbox'){ e.preventDefault(); t.blur(); }
+  });
+  tb.addEventListener('click', e => {
     const del = e.target.closest('[data-del]');
     if(del){ state.items = state.items.filter(i => i.id != del.dataset.del); render(); return; }
     const add = e.target.closest('[data-addto]');
@@ -350,16 +438,14 @@
   $('btn-clear').addEventListener('click', () => {
     if(!confirm('Começar um orçamento novo? Os itens atuais serão apagados.')) return;
     state = {meta:{},items:[]};
-    Object.entries(metaMap).forEach(([k,id]) => $(id).value = state.meta[k] || '');
-    syncNotes(); render();
+    obs.value = ''; syncNotes(); currentAmb = null; render();
   });
 
   $('btn-pdf').addEventListener('click', () => {
     const old = document.title;
     document.title = 'Orçamento marcenaria ' + new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
-    const ta = $('m-obs'); ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px';
     try{ window.print(); } catch(e){ alert('A impressão foi bloqueada aqui. Abra o arquivo HTML direto no navegador e use Ctrl/Cmd+P → Salvar como PDF.'); }
-    setTimeout(() => { document.title = old; ta.style.height = ''; }, 500);
+    setTimeout(() => { document.title = old; }, 500);
   });
 
   render();
